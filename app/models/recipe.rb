@@ -6,4 +6,9 @@ class Recipe < ApplicationRecord
   def user_name
     user.name
   end
+
+  def sorted_ingredients
+    ingredients.sort_by {|ingredient| ingredient.name}
+  end
+
 end

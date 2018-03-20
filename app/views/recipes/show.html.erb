@@ -1,0 +1,14 @@
+<h1><%=@recipe.name%></h1>
+<h2>Ingredients:</h2>
+<table>
+<tr>
+  <th>Grams</th>
+  <th>Name</th>
+</tr>
+<%@recipe.sorted_ingredients.each do |ingredient|%>
+  <tr>
+    <td><%=RecipeIngredient.find_by(recipe: @recipe, ingredient: ingredient).quantity%></td>
+    <td><%=ingredient.name%></td>
+  </tr>
+<%end%>
+</table>
