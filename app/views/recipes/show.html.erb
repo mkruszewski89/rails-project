@@ -12,3 +12,7 @@
   </tr>
 <%end%>
 </table>
+<h2>Instructions:</h2>
+<%@recipe.instructions_array.each_with_index do |instruction, index|%>
+  <div><%=index+1%>. <%=instruction%></div>
+<%end%>

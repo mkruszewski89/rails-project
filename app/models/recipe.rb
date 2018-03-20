@@ -11,4 +11,8 @@ class Recipe < ApplicationRecord
     ingredients.sort_by {|ingredient| ingredient.name}
   end
 
+  def instructions_array
+    instructions.split("|")
+  end
+
 end
