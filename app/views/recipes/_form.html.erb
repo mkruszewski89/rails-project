@@ -15,6 +15,16 @@
     <%= f.text_field :name %><br>
   </div><br>
 
+  <div class="field">
+    <%= f.text_field :ingredient_ids, list: "ingredients_autocomplete" %>
+    <datalist id="ingredients_autocomplete">
+    <% Ingredient.all.each do |ingredient| %>
+      <option value="<%=ingredient.name%>">
+    <% end %>
+    </datalist>
+    <textarea name="recipe[ingredient]"></textarea>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

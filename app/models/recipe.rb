@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
   belongs_to :user
+  has_many :instructions
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
 
@@ -9,10 +10,6 @@ class Recipe < ApplicationRecord
 
   def sorted_ingredients
     ingredients.sort_by {|ingredient| ingredient.name}
-  end
-
-  def instructions_array
-    instructions.split("|")
   end
 
 end
