@@ -1,3 +1,9 @@
+<datalist id="ingredients_autocomplete">
+  <% Ingredient.all.each do |ingredient| %>
+    <option value="<%=ingredient.name%>">
+  <% end %>
+</datalist>
+
 <%= form_for @recipe do |f| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
@@ -10,20 +16,26 @@
     </div>
   <% end %>
 
+  <h3>Name:</h3>
   <div class="text-field-input">
-    <%= f.label :name %><br>
     <%= f.text_field :name %><br>
-  </div><br>
+  </div>
+
+  <h3>Ingredients:</h3>
+  <div class="text-field-datalist-input">
+  <%= f.fields_for :ingredients do |ingredient| %>
+    <%= ingredient.text_field :name, list: "ingredients_autocomplete" %><br>
+  <% end %>
+  </div>
 
   <h3>Instructions:</h3>
   <div class="text-area-input">
-    <textarea name="recipe[instruction_contents][]"><%=@recipe.instruction_contents[0]%></textarea><br>
+  <%= f.fields_for :instructions do |instruction| %>
+    <%= instruction.text_area :content %><br>
+  <% end %>
   </div>
 
-  <div class="text-area-input">
-    <textarea name="recipe[instruction_contents][]"><%=@recipe.instruction_contents[1]%></textarea><br>
-  </div>
-
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>

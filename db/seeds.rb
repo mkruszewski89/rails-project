@@ -14,8 +14,8 @@ test_user = User.create(email: "test@test.com", password: "password")
 test_recipe = Recipe.create(name: "test recipe", user: test_user)
 test_instruction_1 = Instruction.create(content: "test instruction 1", recipe: test_recipe)
 test_instruction_2 = Instruction.create(content: "test instruction 2", recipe: test_recipe)
-test_ingredient_1 = Ingredient.create(name: "test ingredient 1")
-test_ingredient_2 = Ingredient.create(name: "test ingredient 2")
+test_ingredient_1 = Ingredient.create(name: "apple")
+test_ingredient_2 = Ingredient.create(name: "asparagus")
 test_quantity_1 = 100
 test_quantity_2 = 200
 RecipeIngredient.create(recipe: test_recipe, ingredient: test_ingredient_1, quantity: test_quantity_1)

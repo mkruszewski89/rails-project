@@ -5,14 +5,8 @@
   <th>Grams</th>
   <th>Name</th>
 </tr>
-<%@recipe.sorted_ingredients.each do |ingredient|%>
-  <tr>
-    <td><%=RecipeIngredient.find_by(recipe: @recipe, ingredient: ingredient).quantity%></td>
-    <td><%=ingredient.name%></td>
-  </tr>
-<%end%>
+<tr>
+  <td>Grams Data</td>
+  <td>Name Data</td>
+</tr>
 </table>
-<h3>Instructions:</h3>
-<%@recipe.instruction_contents.each_with_index do |content, index|%>
-  <div><%=index+1%>. <%=content%></div>
-<%end%>
