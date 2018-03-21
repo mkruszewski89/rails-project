@@ -10,7 +10,13 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.create(recipe_params)
+    @recipe = Recipe.new(recipe_params)
+    @recipe.user = User.all[0]
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
+    else
+      render :new
+    end
   end
 
   def show
@@ -32,7 +38,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, ingredient_ids: [])
+    params.require(:recipe).permit(:name, instruction_contents: [])
   end
 
 end

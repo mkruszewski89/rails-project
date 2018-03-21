@@ -15,14 +15,13 @@
     <%= f.text_field :name %><br>
   </div><br>
 
+  <h3>Instructions:</h3>
   <div class="field">
-    <%= f.text_field :ingredient_ids, list: "ingredients_autocomplete" %>
-    <datalist id="ingredients_autocomplete">
-    <% Ingredient.all.each do |ingredient| %>
-      <option value="<%=ingredient.name%>">
-    <% end %>
-    </datalist>
-    <textarea name="recipe[ingredient]"></textarea>
+    <textarea name="recipe[instruction_contents][]"><%=@recipe.instruction_contents[0]%></textarea><br>
+  </div>
+
+  <div class="field">
+    <textarea name="recipe[instruction_contents][]"><%=@recipe.instruction_contents[1]%></textarea><br>
   </div>
 
   <div class="actions">

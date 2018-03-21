@@ -1,5 +1,5 @@
 <h1><%=@recipe.name%></h1>
-<h2>Ingredients:</h2>
+<h3>Ingredients:</h3>
 <table>
 <tr>
   <th>Grams</th>
@@ -12,7 +12,7 @@
   </tr>
 <%end%>
 </table>
-<h2>Instructions:</h2>
-<%@recipe.instructions_array.each_with_index do |instruction, index|%>
-  <div><%=index+1%>. <%=instruction%></div>
+<h3>Instructions:</h3>
+<%@recipe.instruction_contents.each_with_index do |content, index|%>
+  <div><%=index+1%>. <%=content%></div>
 <%end%>
