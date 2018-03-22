@@ -1,5 +1,8 @@
 <h1><%=@recipe.name%></h1>
 
+<h2>Step by Step</h2>
+  <iframe src="<%=instruction_path(@recipe)%>" width="100%" height="100%" scrolling="yes" allowfullscreen></iframe>
+
 <h2>Overview</h2>
 
   <h3>Ingredients:</h3>

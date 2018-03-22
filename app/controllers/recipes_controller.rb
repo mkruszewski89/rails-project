@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :step_by_step]
 
   def index
     @recipes = Recipe.all
@@ -33,6 +33,11 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def step_by_step
+    render :layout => false
+  
   end
 
   private
