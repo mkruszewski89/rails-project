@@ -2,19 +2,15 @@
 <h3>Ingredients:</h3>
 <table>
 <tr>
-  <th>Grams</th>
+  <th>Quantity</th>
+  <th>Unit</th>
   <th>Name</th>
 </tr>
+<%@recipe.quantities.each do |quantity|%>
 <tr>
-  <td>Grams Data</td>
-  <td>Name Data</td>
+  <td><%=quantity.amount%></td>
+  <td><%=quantity.unit.name.pluralize(quantity.amount)%></td>
+  <td><%=quantity.ingredient.name%></td>
 </tr>
-</table>
-
-Recipe Name:<br><%=@recipe.name%><br><br>
-Recipe Instructions:<br><%@recipe.instructions.each do |instruction|%><%=instruction.content%><br><%end%><br><br>
-Recipe Quantites:<br><%@recipe.quantities.each do |quantity|%>
-  <%=quantity.amount%><br>
-  <%=quantity.unit%><br>
-  <%=quantity.ingredient%><br><br>
 <%end%>
+</table>
