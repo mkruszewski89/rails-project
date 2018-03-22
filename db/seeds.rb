@@ -5,6 +5,8 @@ Instruction.destroy_all
 Unit.destroy_all
 Quantity.destroy_all
 
+Ingredient.create
+Unit.create
 Unit.create(lowest_unit: 'milliliter', lowest_unit_equivalence: 1.00000, name: 'milliliter')
 Unit.create(lowest_unit: 'milliliter', lowest_unit_equivalence: 4.92892, name: 'teaspoon')
 Unit.create(lowest_unit: 'milliliter', lowest_unit_equivalence: 14.7868, name: 'tablespoon')

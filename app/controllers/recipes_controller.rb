@@ -7,8 +7,8 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @recipe.quantities.build(amount: "")
-    @recipe.quantities.build(amount: "")
+    @recipe.quantities.build(amount: "", unit: Unit.all[0], ingredient: Ingredient.all[0])
+    @recipe.quantities.build(amount: "", unit: Unit.all[0], ingredient: Ingredient.all[0])
     @recipe.instructions.build(content: "")
     @recipe.instructions.build(content: "")
   end
