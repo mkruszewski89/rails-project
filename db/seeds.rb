@@ -20,3 +20,17 @@ test_quantity_1 = 100
 test_quantity_2 = 200
 RecipeIngredient.create(recipe: test_recipe, ingredient: test_ingredient_1, quantity: test_quantity_1)
 RecipeIngredient.create(recipe: test_recipe, ingredient: test_ingredient_2, quantity: test_quantity_2)
+
+Unit.new(lowest_unit: milliliter, lowest_unit_equivalence: 1.00000, name: milliliter)
+Unit.new(lowest_unit: milliliter, lowest_unit_equivalence: 4.92892, name: teaspoon)
+Unit.new(lowest_unit: milliliter, lowest_unit_equivalence: 14.7868, name: tablespoon)
+Unit.new(lowest_unit: milliliter, lowest_unit_equivalence: 29.5735, name: fluid ounce)
+Unit.new(lowest_unit: milliliter, lowest_unit_equivalence: 236.588, name: cup)
+Unit.new(lowest_unit: milliliter, lowest_unit_equivalence: 473.176, name: pint)
+Unit.new(lowest_unit: milliliter, lowest_unit_equivalence: 946.353, name: quart)
+Unit.new(lowest_unit: milliliter, lowest_unit_equivalence: 1000.00, name: liter)
+Unit.new(lowest_unit: milliliter, lowest_unit_equivalence: 3785.41, name: gallon)
+Unit.new(lowest_unit: gram, lowest_unit_equivalence: 1.00000, name: gram)
+Unit.new(lowest_unit: gram, lowest_unit_equivalence: 28.3495, name: ounce)
+Unit.new(lowest_unit: gram, lowest_unit_equivalence: 453.592, name: pound)
+Unit.new(lowest_unit: gram, lowest_unit_equivalence: 1000.00, name: kilogram)
