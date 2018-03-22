@@ -1,16 +1,26 @@
 <h1><%=@recipe.name%></h1>
-<h3>Ingredients:</h3>
-<table>
-<tr>
-  <th>Quantity</th>
-  <th>Unit</th>
-  <th>Name</th>
-</tr>
-<%@recipe.quantities.each do |quantity|%>
-<tr>
-  <td><%=quantity.amount%></td>
-  <td><%=quantity.unit.name.pluralize(quantity.amount)%></td>
-  <td><%=quantity.ingredient.name%></td>
-</tr>
-<%end%>
-</table>
+
+<h2>Overview</h2>
+
+  <h3>Ingredients:</h3>
+    <table>
+      <tr>
+        <th>Quantity</th>
+        <th>Unit</th>
+        <th>Name</th>
+      </tr>
+      <%@recipe.quantities.each do |quantity|%>
+        <tr>
+          <td><%=quantity.amount%></td>
+          <td><%=quantity.unit.name.pluralize(quantity.amount)%></td>
+          <td><%=quantity.ingredient.name%></td>
+        </tr>
+      <%end%>
+    </table>
+
+  <h3>Instructions</h3>
+    <ol>
+      <% @recipe.instructions.each do |instruction| %>
+        <li><%=instruction.content%></li>
+      <% end %>
+    </ol>
