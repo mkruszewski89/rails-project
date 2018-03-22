@@ -4,6 +4,12 @@
   <% end %>
 </datalist>
 
+<datalist id="units_autocomplete">
+  <% Unit.all.each do |unit| %>
+    <option value="<%=unit.name%>">
+  <% end %>
+</datalist>
+
 <%= form_for @recipe do |f| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
@@ -22,11 +28,11 @@
   </div>
 
   <h3>Ingredients:</h3>
-  <div class="text-field-datalist-input">
-  <%= f.fields_for :ingredients do |ingredient| %>
-    <%= ingredient.text_field :name, list: "ingredients_autocomplete" %><br>
+  <%= f.fields_for :quantities do |quantity| %>
+    Amount: <%= quantity.text_field :amount %><br>
+    Unit: <%= quantity.text_field :unit, list: "units_autocomplete" %><br>
+    Ingredient Name: <%= quantity.text_field :ingredient, list: "ingredients_autocomplete" %><br>
   <% end %>
-  </div>
 
   <h3>Instructions:</h3>
   <div class="text-area-input">

@@ -10,3 +10,11 @@
   <td>Name Data</td>
 </tr>
 </table>
+
+Recipe Name:<br><%=@recipe.name%><br><br>
+Recipe Instructions:<br><%@recipe.instructions.each do |instruction|%><%=instruction.content%><br><%end%><br><br>
+Recipe Quantites:<br><%@recipe.quantities.each do |quantity|%>
+  <%=quantity.amount%><br>
+  <%=quantity.unit%><br>
+  <%=quantity.ingredient%><br><br>
+<%end%>
