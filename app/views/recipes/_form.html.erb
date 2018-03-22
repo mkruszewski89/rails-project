@@ -28,10 +28,12 @@
   </div>
 
   <h3>Ingredients:</h3>
+  <% i = 0 %>
   <%= f.fields_for :quantities do |quantity| %>
     Amount: <%= quantity.text_field :amount %><br>
-    Unit: <%= quantity.text_field :unit, list: "units_autocomplete" %><br>
-    Ingredient Name: <%= quantity.text_field :ingredient, list: "ingredients_autocomplete" %><br>
+    Unit: <%= quantity.text_field :unit, value: @recipe.quantities[i].unit.name, list: "units_autocomplete"%><br>
+    Ingredient Name: <%= quantity.text_field :ingredient, value: @recipe.quantities[i].ingredient.name, list: "ingredients_autocomplete" %><br>
+    <% i += 1 %>
   <% end %>
 
   <h3>Instructions:</h3>
