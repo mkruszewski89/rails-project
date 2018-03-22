@@ -30,6 +30,11 @@ class RecipesController < ApplicationController
   end
 
   def update
+    if @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -37,7 +42,7 @@ class RecipesController < ApplicationController
 
   def step_by_step
     render :layout => false
-  
+
   end
 
   private

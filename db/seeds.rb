@@ -40,10 +40,10 @@ seed_quantity_attributes = {
 
 seed_instruction_attributes = {
   "0" => {
-    "content" => "test instruction 1"
+    content: "test instruction 1"
   },
   "1" => {
-    "content"=>"test instruction 2"
+    content: "test instruction 2"
   }
 }
 

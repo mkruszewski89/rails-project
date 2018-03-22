@@ -7,12 +7,21 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
 
   def quantities_attributes=(quantity_attributes)
+    quantities.destroy_all
     quantity_attributes.values.each {|quantity_attribute|
       amount = quantity_attribute[:amount].to_f
       unit = Unit.find_by(name: quantity_attribute[:unit])
       ingredient = Ingredient.find_or_create_by(name: quantity_attribute[:ingredient])
       quantity = Quantity.create(amount: amount, unit: unit, ingredient: ingredient)
-      self.quantities << quantity
+      quantities << quantity
+    }
+  end
+
+  def instructions_attributes=(instruction_attributes)
+    instructions.destroy_all
+    instruction_attributes.values.each {|instruction_attribute|
+      instruction = Instruction.create(content: instruction_attribute[:content])
+      instructions << instruction
     }
   end
 
