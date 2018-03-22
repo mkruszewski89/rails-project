@@ -16,4 +16,10 @@ class Recipe < ApplicationRecord
     }
   end
 
+  def ingredient_quantity(ingredient_name)
+    ingredient_object = ingredients.detect {|ingredient| ingredient.name = ingredient_name}
+    quantity_object = quantities.detect {|quantity| quantity.ingredient = ingredient_object}
+    "#{quantity_object.amount} #{quantity_object.unit.name.pluralize(quantity_object.amount)}"
+  end
+
 end
