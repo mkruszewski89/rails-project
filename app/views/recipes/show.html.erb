@@ -1,28 +1,16 @@
 <h1><%=@recipe.name%></h1>
 
-<!-- <h2>Step by Step</h2>
-  <iframe src="<%=instruction_path(@recipe)%>" width="100%" height="100%" scrolling="yes" allowfullscreen></iframe>
-<h2>Overview</h2>
+<h3>Ingredients:</h3>
+  <table>
+    <tr>
+      <th>Quantity</th>
+      <th>Unit</th>
+      <th>Name</th>
+    </tr>
+    <%= render(@recipe.quantities) || "No Ingredients!" %>
+  </table>
 
-  <h3>Ingredients:</h3> -->
-    <table>
-      <tr>
-        <th>Quantity</th>
-        <th>Unit</th>
-        <th>Name</th>
-      </tr>
-      <%@recipe.quantities.each do |quantity|%>
-        <tr>
-          <td><%=quantity.amount%></td>
-          <td><%=quantity.unit_name%></td>
-          <td><%=quantity.ingredient_name%></td>
-        </tr>
-      <%end%>
-    </table>
-
-  <h3>Instructions</h3>
-    <ol>
-      <% @recipe.instructions.each do |instruction| %>
-        <li><%=instruction.content%></li>
-      <% end %>
-    </ol>
+<h3>Instructions</h3>
+  <ol>
+    <%= render(@recipe.instructions) || "No Instructions!" %>
+  </ol>

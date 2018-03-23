@@ -26,7 +26,7 @@ class Recipe < ApplicationRecord
   end
 
   def self.search(search_term)
-    where("name LIKE ?", "%#{search_term}") 
+    where("name LIKE ?", "%#{search_term}")
   end
 
   def convert_ingredient_quantity_to(ingredient_name, unit_name)
@@ -43,6 +43,10 @@ class Recipe < ApplicationRecord
     ingredient_object = ingredients.detect {|ingredient| ingredient.name = ingredient_name}
     quantity_object = quantities.detect {|quantity| quantity.ingredient = ingredient_object}
     "#{quantity_object.amount.round(2)} #{quantity_object.unit.name.pluralize(quantity_object.amount)}"
+  end
+
+  def user_name
+    user.name
   end
 
 end
