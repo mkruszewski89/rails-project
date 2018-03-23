@@ -1,0 +1,32 @@
+<%= form_for recipe do |form| %>
+  <% if @recipe.errors.any? %>
+    <%= render(partial: 'application/form_errors', locals: {model_instance: @recipe}) %>
+  <% end %>
+
+  <h3>Name:</h3>
+    <%= form.text_field :name %><br>
+
+  <h3>Ingredients:</h3>
+  <table>
+    <tr>
+      <th>Amount</th>
+      <th>Unit</th>
+      <th>Ingredient Name</th>
+    </tr>
+  <%= form.fields_for :quantities do |quantity_form| %>
+    <tr>
+      <td><%= quantity_form.text_field :amount, value: display_quantity_amount(quantity_form.object) %></td>
+      <td><%= quantity_form.text_field :unit, value: display_quantity_unit_name(quantity_form.object), list: "units_autocomplete"%></td>
+      <td><%= quantity_form.text_field :ingredient, value: display_quantity_ingredient_name(quantity_form.object), list: "ingredients_autocomplete"%></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <h3>Instructions:</h3>
+  <%= form.fields_for :instructions do |instruction_form| %>
+    <%= instruction_form.text_area :content, value: display_instruction_content(instruction_form.object) %><br>
+  <% end %><br>
+
+  <%= form.submit %>
+
+<% end %>

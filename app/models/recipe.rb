@@ -12,41 +12,28 @@ class Recipe < ApplicationRecord
       amount = quantity_attribute[:amount].to_f
       unit = Unit.find_by(name: quantity_attribute[:unit])
       ingredient = Ingredient.find_or_create_by(name: quantity_attribute[:ingredient])
-      quantity = Quantity.create(amount: amount, unit: unit, ingredient: ingredient)
-      quantities << quantity
+      quantities << Quantity.create(amount: amount, unit: unit, ingredient: ingredient)
     }
   end
 
   def instructions_attributes=(instruction_attributes)
     instructions.destroy_all
     instruction_attributes.values.each {|instruction_attribute|
-      instruction = Instruction.create(content: instruction_attribute[:content])
-      instructions << instruction
+      instructions << Instruction.create(content: instruction_attribute[:content])
     }
   end
 
-  def self.search(search_term)
-    where("name LIKE ?", "%#{search_term}")
-  end
-
-  def convert_ingredient_quantity_to(ingredient_name, unit_name)
-    pieces = ingredient_quantity(ingredient_name).split(" ")
-    unit_new = Unit.find_by(name: unit_name)
-    unit_old = Unit.find_by(name: pieces[1].singularize)
-    quantity_old = pieces[0].to_f
-    quantity_lowest_unit = quantity_old * unit_old.lowest_unit_equivalence
-    quantity_new = quantity_lowest_unit / unit_new.lowest_unit_equivalence
-    "#{quantity_new.round(2)} #{unit_new.name.pluralize(quantity_new)}"
+  def convert_ingredient_to_unit(ingredient_name, unit_name)
+    data_to_convert = ingredient_quantity(ingredient_name)
+    new_unit = Unit.find_by(name: unit_name)
+    new_amount = data_to_convert[:amount] * data_to_convert[:unit].lowest_unit_equivalence / new_unit.lowest_unit_equivalence
+    {unit: new_unit, amount: new_amount}
   end
 
   def ingredient_quantity(ingredient_name)
     ingredient_object = ingredients.detect {|ingredient| ingredient.name = ingredient_name}
     quantity_object = quantities.detect {|quantity| quantity.ingredient = ingredient_object}
-    "#{quantity_object.amount.round(2)} #{quantity_object.unit.name.pluralize(quantity_object.amount)}"
-  end
-
-  def user_name
-    user.name
+    {unit: quantity_object.unit, amount: quantity_object.amount}
   end
 
 end

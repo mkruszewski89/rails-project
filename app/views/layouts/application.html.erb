@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <title>Recipe Book</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <datalist id="ingredients_autocomplete">
+      <% Ingredient.all.each do |ingredient| %>
+        <option value="<%=ingredient.name%>">
+      <% end %>
+    </datalist>
+
+    <datalist id="units_autocomplete">
+      <% Unit.all.each do |unit| %>
+        <option value="<%=unit.name%>">
+      <% end %>
+    </datalist>
+
   </head>
   <header>
     <nav>

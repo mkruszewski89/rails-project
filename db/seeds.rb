@@ -23,6 +23,7 @@ Unit.create(lowest_unit: 'gram', lowest_unit_equivalence: 1000.00, name: 'kilogr
 
 test_user =
   User.create(
+    name: "test user",
     email: "test@test.com",
     password: "password"
 )

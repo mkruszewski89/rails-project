@@ -12,4 +12,5 @@ module QuantitiesHelper
     quantity.ingredient.name
   end
 
+
 end

@@ -7,10 +7,10 @@
       <th>Unit</th>
       <th>Name</th>
     </tr>
-    <%= render(partial: '/quantities/quantity', collection: @recipe.quantities) || "No Ingredients!" %>
+    <%= render(partial: '/quantities/all_attr_tr', collection: @recipe.quantities, as: :quantity) || "No Ingredients!" %>
   </table>
 
 <h3>Instructions</h3>
   <ol>
-    <%= render(partial: '/instructions/instruction', collection: @recipe.instructions) || "No Instructions!" %>
+    <%= render(partial: '/instructions/content_ol', collection: @recipe.instructions, as: :instruction) || "No Instructions!" %>
   </ol>

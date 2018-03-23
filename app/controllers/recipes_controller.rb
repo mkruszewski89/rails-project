@@ -1,9 +1,9 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :step_by_step]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:search]
-      @recipes = Recipe.search(params[:search])
+      @recipes = Recipe.search_by_name(params[:search])
     else
       @recipes = Recipe.all
     end
@@ -42,11 +42,6 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-  end
-
-  def step_by_step
-    render :layout => false
-
   end
 
   private
