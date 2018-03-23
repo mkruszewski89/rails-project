@@ -3,7 +3,7 @@
 <br>
 <br>
 <%= form_tag(recipes_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Recipes by Name, Ingredient, or User" %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Recipes by Name" %>
   <br>
   <%= submit_tag "Search", :name => nil %>
 <% end %>
