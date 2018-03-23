@@ -25,6 +25,10 @@ class Recipe < ApplicationRecord
     }
   end
 
+  def self.search(search_term)
+    where("name LIKE ? OR ingredients LIKE ? OR user LIKE ?", "%#{search_term}", "%#{search_term}", "%#{search_term}")
+  end
+
   def convert_ingredient_quantity_to(ingredient_name, unit_name)
     pieces = ingredient_quantity(ingredient_name).split(" ")
     unit_new = Unit.find_by(name: unit_name)

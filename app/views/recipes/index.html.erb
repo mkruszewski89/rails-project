@@ -1,7 +1,20 @@
 <h1>Recipes</h1>
-  <%=link_to "Create a Recipe", new_recipe_path%><br><br>
-  <%=@recipes.each do |recipe|%>
-    <%=link_to recipe.name.titleize, recipe_path(recipe)%>
-    by
-    <br>
-  <%end%>
+<%=link_to "Create a Recipe", new_recipe_path%>
+<br>
+<br>
+<%= form_tag(recipes_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Recipes by Name, Ingredient, or User" %>
+  <br>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+<br>
+<%=@recipes.each do |recipe|%>
+  <%=link_to recipe.name.titleize, recipe_path(recipe)%>
+  by
+  <br>
+  <br>
+<%end%>
+
+<% if @recipes.blank? %>
+  There are no recipes containing the name, ingredient, or user <%= params[:search] %>
+<% end %>
