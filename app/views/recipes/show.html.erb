@@ -1,4 +1,4 @@
-<h1><%=@recipe.name%></h1>
+<h1><%= display_recipe_name(@recipe) %></h1>
 
 <h3>Ingredients:</h3>
   <table>
@@ -7,10 +7,10 @@
       <th>Unit</th>
       <th>Name</th>
     </tr>
-    <%= render(@recipe.quantities) || "No Ingredients!" %>
+    <%= render(partial: '/quantities/quantity', collection: @recipe.quantities) || "No Ingredients!" %>
   </table>
 
 <h3>Instructions</h3>
   <ol>
-    <%= render(@recipe.instructions) || "No Instructions!" %>
+    <%= render(partial: '/instructions/instruction', collection: @recipe.instructions) || "No Instructions!" %>
   </ol>

@@ -1,9 +1,9 @@
 <h1>Recipes</h1>
-<%=link_to "Create a Recipe", new_recipe_path%><br><br>
+<%= link_to("Create a Recipe", new_recipe_path) %><br><br>
 
 <%= form_tag(recipes_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Recipes by Name" %><br>
+  <%= text_field_tag :search, params[:search] %><br>
   <%= submit_tag "Search", :name => nil %><br><br>
 <% end %>
 
-<%= render(@recipes) || "No Recipes!" %>
+<%= render(partial: 'recipe', collection: @recipes) || "No Recipes!"%>
