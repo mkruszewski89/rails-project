@@ -1,4 +1,4 @@
 <%= link_to(display_recipe_name(recipe), recipe_path(recipe)) %>
  by:
-<%= "user link coming soon!" %>
+<%= link_to(display_recipe_user_email(recipe), user_path(recipe.user)) %>
 <br>

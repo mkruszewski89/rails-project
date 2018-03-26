@@ -16,7 +16,7 @@
   <%= form.fields_for :quantities do |quantity_form| %>
     <tr>
       <td><%= quantity_form.text_field :amount, value: display_quantity_amount(quantity_form.object) %></td>
-      <td><%= quantity_form.text_field :unit, value: display_quantity_unit_name(quantity_form.object), list: "units_autocomplete"%></td>
+      <td><%= quantity_form.text_field :unit, value: display_quantity_unit_name(quantity_form.object).singularize, list: "units_autocomplete"%></td>
       <td><%= quantity_form.text_field :ingredient, value: display_quantity_ingredient_name(quantity_form.object), list: "ingredients_autocomplete"%></td>
     </tr>
   <% end %>

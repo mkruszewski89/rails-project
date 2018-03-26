@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :recipe_set, only: [:show, :edit, :update, :destroy]
+  before_action :recipe_authorization, only: [:edit, :update, :destroy]
 
   def index
     if params[:search]
@@ -10,15 +11,21 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
-    @recipe.quantities.build(amount: "", unit: Unit.all[0], ingredient: Ingredient.all[0])
-    @recipe.quantities.build(amount: "", unit: Unit.all[0], ingredient: Ingredient.all[0])
-    @recipe.instructions.build(content: "")
-    @recipe.instructions.build(content: "")
+    if !current_user
+      flash[:message] = "You must be logged in to create a recipe!"
+      redirect_to new_user_registration_path
+    else
+      @recipe = Recipe.new
+      @recipe.quantities.build(amount: "", unit: Unit.all[0], ingredient: Ingredient.all[0])
+      @recipe.quantities.build(amount: "", unit: Unit.all[0], ingredient: Ingredient.all[0])
+      @recipe.instructions.build(content: "")
+      @recipe.instructions.build(content: "")
+    end
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -41,16 +48,23 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    @recipe.destroy
+    redirect_to recipes_path
   end
 
   private
 
-  def set_recipe
+  def recipe_set
     @recipe = Recipe.find(params[:id])
   end
 
+  def recipe_authorization
+    @recipe = Recipe.find(params[:id])
+    authorize @recipe
+  end
+
   def recipe_params
-    params.require(:recipe).permit(:name, quantities_attributes: [:amount, :ingredient, :unit], instructions_attributes: [:content])
+    params.require(:recipe).permit(:user, :name, quantities_attributes: [:amount, :ingredient, :unit], instructions_attributes: [:content])
   end
 
 end

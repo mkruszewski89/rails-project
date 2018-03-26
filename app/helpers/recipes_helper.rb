@@ -4,8 +4,8 @@ module RecipesHelper
     recipe.name.titleize
   end
 
-  def display_recipe_user_name(recipe)
-    recipe.user.name.titleize
+  def display_recipe_user_email(recipe)
+    recipe.user.email
   end
 
 end

@@ -1,5 +1,13 @@
 <h1><%= display_recipe_name(@recipe) %></h1>
 
+<% if policy(@recipe).update? %>
+  <%= link_to("Edit Recipe", edit_recipe_path(@recipe)) %>
+<% end %>
+
+<% if policy(@recipe).destroy? %>
+  <%= link_to("Delete Recipe", recipe_path(@recipe), method: :delete, data: {confirm: "Deleting a recipe cannot be undone, are you sure?"}) %>
+<% end %>
+
 <h3>Ingredients:</h3>
   <table>
     <tr>
