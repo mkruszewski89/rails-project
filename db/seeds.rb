@@ -21,13 +21,6 @@ Unit.create(lowest_unit: 'gram', lowest_unit_equivalence: 28.3495, name: 'ounce'
 Unit.create(lowest_unit: 'gram', lowest_unit_equivalence: 453.592, name: 'pound')
 Unit.create(lowest_unit: 'gram', lowest_unit_equivalence: 1000.00, name: 'kilogram')
 
-test_user =
-  User.create(
-    name: "test user",
-    email: "test@test.com",
-    password: "password"
-)
-
 seed_quantity_attributes = {
   "0" => {
     amount: "10",
@@ -51,7 +44,6 @@ seed_instruction_attributes = {
 }
 
 test_recipe = Recipe.new
-test_recipe.user = test_user
 test_recipe.name = "test recipe"
 test_recipe.quantities_attributes=(seed_quantity_attributes)
 test_recipe.instructions_attributes=(seed_instruction_attributes)
