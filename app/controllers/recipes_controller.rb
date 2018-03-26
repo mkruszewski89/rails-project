@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-    if @recipe.update(recipe_params)
+    if @recipe.update(permitted_attributes(@recipe))
       redirect_to recipe_path(@recipe)
     else
       render :edit
